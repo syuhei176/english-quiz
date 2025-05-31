@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>英語クイズ</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin: 40px; }
+    button { display: block; margin: 10px auto; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h1>英語クイズ</h1>
+  <div id="quiz"></div>
+
+  <script>
+    const quizData = [
+  {
+    "question": "() you play the piano?",
+    "choices": ["is", "are", "do", "does"],
+    "answer": "do"
+  },
+  {
+    "question": "Do you () soccer?",
+    "choices": ["play", "plays", "playing", "played"],
+    "answer": "play"
+  },
+  {
+    "question": "Does she () to school by bike?",
+    "choices": ["go", "goes", "went", "going"],
+    "answer": "go"
+  },
+  {
+    "question": "He () a doctor.",
+    "choices": ["am", "is", "are", "be"],
+    "answer": "is"
+  },
+  {
+    "question": "We () happy to see you.",
+    "choices": ["is", "am", "are", "be"],
+    "answer": "are"
+  },
+  {
+    "question": "They () like pizza.",
+    "choices": ["doesn't", "don't", "aren't", "isn't"],
+    "answer": "don't"
+  },
+  {
+    "question": "I () not watch TV every day.",
+    "choices": ["don't", "doesn't", "am", "is"],
+    "answer": "don't"
+  },
+  {
+    "question": "Are you () now?",
+    "choices": ["study", "studies", "studying", "studied"],
+    "answer": "studying"
+  },
+  {
+    "question": "Does he () tennis?",
+    "choices": ["play", "plays", "playing", "played"],
+    "answer": "play"
+  },
+  {
+    "question": "She () not speak Chinese.",
+    "choices": ["do", "does", "doesn't", "don't"],
+    "answer": "doesn't"
+  }]
+
+    let current = 0;
+    const quizDiv = document.getElementById("quiz");
+
+    function showQuestion() {
+      const q = quizData[current];
+      quizDiv.innerHTML = `<h2>${q.question}</h2>`;
+      q.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = () => {
+          alert(choice === q.answer ? "正解！" : "不正解！");
+          current++;
+          if (current < quizData.length) showQuestion();
+          else quizDiv.innerHTML = "<h2>終了！</h2>";
+        };
+        quizDiv.appendChild(btn);
+      });
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
