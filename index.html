@@ -4,73 +4,418 @@
   <meta charset="UTF-8" />
   <title>英語クイズ</title>
   <style>
-    body { font-family: sans-serif; text-align: center; margin: 40px; }
-    button { display: block; margin: 10px auto; padding: 10px 20px; }
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.question {
+  font-size: 2.8rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.translation {
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+button {
+  font-size: 1rem;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+}
   </style>
 </head>
 <body>
   <h1>英語クイズ</h1>
-  <div id="quiz"></div>
+  <div id="quiz">
+    <h2 id="question" class="question"></h2>
+    <p id="translation" class="translation"></p>
+    <div id="choices" class="choices"></div>
+  </div>
 
   <script>
     const quizData = [
   {
-    "question": "() you play the piano?",
-    "choices": ["is", "are", "do", "does"],
-    "answer": "do"
+    "question": "She () not speak Chinese.",
+    "choices": [
+      "do",
+      "does",
+      "doesn't",
+      "don't"
+    ],
+    "answer": "doesn't",
+    "translation": "〜ない文"
+  },
+  {
+    "question": "Is she () to music?",
+    "choices": [
+      "listen",
+      "listens",
+      "listening",
+      "listened"
+    ],
+    "answer": "listening",
+    "translation": "彼女は音楽を聴いていますか？"
+  },
+  {
+    "question": "She () at school now.",
+    "choices": [
+      "is",
+      "are",
+      "was",
+      "were"
+    ],
+    "answer": "is",
+    "translation": "彼/彼女は学校にいますか？"
+  },
+  {
+    "question": "Are they () English?",
+    "choices": [
+      "study",
+      "studied",
+      "studies",
+      "studying"
+    ],
+    "answer": "studying",
+    "translation": "彼らは英語を勉強していますか？"
   },
   {
     "question": "Do you () soccer?",
-    "choices": ["play", "plays", "playing", "played"],
-    "answer": "play"
+    "choices": [
+      "play",
+      "plays",
+      "playing",
+      "played"
+    ],
+    "answer": "play",
+    "translation": "あなたはサッカーをしますか？"
   },
   {
-    "question": "Does she () to school by bike?",
-    "choices": ["go", "goes", "went", "going"],
-    "answer": "go"
-  },
-  {
-    "question": "He () a doctor.",
-    "choices": ["am", "is", "are", "be"],
-    "answer": "is"
-  },
-  {
-    "question": "We () happy to see you.",
-    "choices": ["is", "am", "are", "be"],
-    "answer": "are"
-  },
-  {
-    "question": "They () like pizza.",
-    "choices": ["doesn't", "don't", "aren't", "isn't"],
-    "answer": "don't"
+    "question": "We () ready for the trip.",
+    "choices": [
+      "is",
+      "am",
+      "are",
+      "be"
+    ],
+    "answer": "are",
+    "translation": "私たちは旅行に準備ができています。"
   },
   {
     "question": "I () not watch TV every day.",
-    "choices": ["don't", "doesn't", "am", "is"],
-    "answer": "don't"
+    "choices": [
+      "don't",
+      "doesn't",
+      "am",
+      "is"
+    ],
+    "answer": "don't",
+    "translation": "私は毎日テレビを見ません。"
+  },
+  {
+    "question": "He () a doctor.",
+    "choices": [
+      "am",
+      "is",
+      "are",
+      "be"
+    ],
+    "answer": "is",
+    "translation": "彼は医者です。"
+  },
+  {
+    "question": "We () happy to see you.",
+    "choices": [
+      "is",
+      "am",
+      "are",
+      "be"
+    ],
+    "answer": "are",
+    "translation": "私たちはあなたに会えて嬉しいです。"
+  },
+  {
+    "question": "He () not eat fish.",
+    "choices": [
+      "don't",
+      "doesn't",
+      "isn't",
+      "aren't"
+    ],
+    "answer": "doesn't",
+    "translation": "彼は魚を食べません。"
+  },
+  {
+    "question": "Ken and I () like soccer.",
+    "choices": [
+      "do",
+      "does",
+      "is",
+      "are"
+    ],
+    "answer": "do",
+    "translation": "私は〜"
+  },
+  {
+    "question": "They () students.",
+    "choices": [
+      "is",
+      "are",
+      "am",
+      "be"
+    ],
+    "answer": "are",
+    "translation": "彼らは学生です。"
+  },
+  {
+    "question": "I () in Tokyo.",
+    "choices": [
+      "am",
+      "is",
+      "are",
+      "be"
+    ],
+    "answer": "am",
+    "translation": "私は東京にいます。"
+  },
+  {
+    "question": "Do they () lunch at 12?",
+    "choices": [
+      "have",
+      "has",
+      "having",
+      "had"
+    ],
+    "answer": "have",
+    "translation": "彼らは12時に昼ごはんを食べますか？"
+  },
+  {
+    "question": "We () have homework today.",
+    "choices": [
+      "don't",
+      "doesn't",
+      "aren't",
+      "isn't"
+    ],
+    "answer": "don't",
+    "translation": "私たちは今日宿題をしません。"
+  },
+  {
+    "question": "Are we () for lunch?",
+    "choices": [
+      "go",
+      "goes",
+      "going",
+      "gone"
+    ],
+    "answer": "going",
+    "translation": "私たちは今日昼ごはんを食べますか？"
+  },
+  {
+    "question": "I () not like carrots.",
+    "choices": [
+      "don't",
+      "doesn't",
+      "am",
+      "are"
+    ],
+    "answer": "don't",
+    "translation": "〜ない文"
+  },
+  {
+    "question": "This is () pen.",
+    "choices": [
+      "I",
+      "me",
+      "my",
+      "mine"
+    ],
+    "answer": "my",
+    "translation": "これは何の〜？"
   },
   {
     "question": "Are you () now?",
-    "choices": ["study", "studies", "studying", "studied"],
-    "answer": "studying"
+    "choices": [
+      "study",
+      "studies",
+      "studying",
+      "studied"
+    ],
+    "answer": "studying",
+    "translation": "あなたはいま〜していますか？"
+  },
+  {
+    "question": "Tom () to the park every day.",
+    "choices": [
+      "go",
+      "goes",
+      "going",
+      "gone"
+    ],
+    "answer": "goes",
+    "translation": "英語の文を完成させましょう"
+  },
+  {
+    "question": "Does she () to school by bike?",
+    "choices": [
+      "go",
+      "goes",
+      "went",
+      "going"
+    ],
+    "answer": "go",
+    "translation": "彼女は自転車で通学しますか？"
   },
   {
     "question": "Does he () tennis?",
-    "choices": ["play", "plays", "playing", "played"],
-    "answer": "play"
+    "choices": [
+      "play",
+      "plays",
+      "playing",
+      "played"
+    ],
+    "answer": "play",
+    "translation": "彼はテニスをしますか？"
   },
   {
-    "question": "She () not speak Chinese.",
-    "choices": ["do", "does", "doesn't", "don't"],
-    "answer": "doesn't"
-  }]
+    "question": "They () like pizza.",
+    "choices": [
+      "doesn't",
+      "don't",
+      "aren't",
+      "isn't"
+    ],
+    "answer": "don't",
+    "translation": "彼らは〜"
+  },
+  {
+    "question": "You () not late.",
+    "choices": [
+      "is",
+      "are",
+      "do",
+      "does"
+    ],
+    "answer": "are",
+    "translation": "〜ない文"
+  },
+  {
+    "question": "Does your brother () baseball?",
+    "choices": [
+      "like",
+      "likes",
+      "liking",
+      "liked"
+    ],
+    "answer": "like",
+    "translation": "あなたの弟は野球が好きですか？"
+  },
+  {
+    "question": "My friends () in the classroom.",
+    "choices": [
+      "is",
+      "are",
+      "am",
+      "be"
+    ],
+    "answer": "are",
+    "translation": "英語の文を完成させましょう"
+  },
+  {
+    "question": "() she your sister?",
+    "choices": [
+      "Is",
+      "Are",
+      "Does",
+      "Do"
+    ],
+    "answer": "Is",
+    "translation": "英語の文を完成させましょう"
+  },
+  {
+    "question": "() you play the piano?",
+    "choices": [
+      "is",
+      "are",
+      "do",
+      "does"
+    ],
+    "answer": "do",
+    "translation": "英語の文を完成させましょう"
+  },
+  {
+    "question": "Do you () cats?",
+    "choices": [
+      "like",
+      "likes",
+      "liking",
+      "liked"
+    ],
+    "answer": "like",
+    "translation": "あなたはネコが好きですか？"
+  },
+  {
+    "question": "She () not have a bike.",
+    "choices": [
+      "don't",
+      "doesn't",
+      "isn't",
+      "aren't"
+    ],
+    "answer": "doesn't",
+    "translation": "〜ない文"
+  }
+]
 
     let current = 0;
     const quizDiv = document.getElementById("quiz");
 
     function showQuestion() {
       const q = quizData[current];
-      quizDiv.innerHTML = `<h2>${q.question}</h2>`;
+      document.getElementById("question").textContent = q.question;
+      document.getElementById("translation").textContent = q.translation;
+      document.getElementById("choices").innerHTML = "";
+      const choicesDiv = document.getElementById("choices");
       q.choices.forEach(choice => {
         const btn = document.createElement("button");
         btn.textContent = choice;
@@ -80,7 +425,7 @@
           if (current < quizData.length) showQuestion();
           else quizDiv.innerHTML = "<h2>終了！</h2>";
         };
-        quizDiv.appendChild(btn);
+        choicesDiv.appendChild(btn);
       });
     }
 
