@@ -39,12 +39,12 @@ h1, h2 {
 .choices {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
 }
 
 button {
-  font-size: 1.6rem;
-  padding: 14px;
+  font-size: 2.4rem;
+  padding: 16px;
   border: none;
   border-radius: 8px;
   background-color: #4CAF50;
@@ -65,6 +65,12 @@ button:hover {
     padding: 16px;
   }
 }
+
+.result {
+  margin: 10px 10px;
+  font-size: 6rem;
+  text-align: center;
+}
   </style>
 </head>
 <body>
@@ -72,6 +78,7 @@ button:hover {
   <div id="quiz">
     <h2 id="question" class="question"></h2>
     <p id="translation" class="translation"></p>
+    <p id="result" class="result"></p>
     <div id="choices" class="choices"></div>
   </div>
 
@@ -254,15 +261,15 @@ button:hover {
     "translation": "私たちは今日昼ごはんを食べますか？"
   },
   {
-    "question": "I () not like carrots.",
+    "question": "I () like carrots.",
     "choices": [
       "don't",
       "doesn't",
-      "am",
-      "are"
+      "amn't",
+      "aren't"
     ],
     "answer": "don't",
-    "translation": "〜ない文"
+    "translation": "私はニンジンが好きではないです。"
   },
   {
     "question": "This is () pen.",
@@ -273,7 +280,7 @@ button:hover {
       "mine"
     ],
     "answer": "my",
-    "translation": "これは何の〜？"
+    "translation": "これは私のペンです。"
   },
   {
     "question": "Are you () now?",
@@ -439,7 +446,30 @@ button:hover {
     ],
     "answer": "does",
     "translation": "〜ない文"
+  },
+  {
+    "question": "() you play soccer?",
+    "choices": [
+      "Are",
+      "Can",
+      "Do",
+      "Does"
+    ],
+    "answer": "Can",
+    "translation": "あなたはサッカーをすることができますか？"
+  },
+  {
+    "question": "I () play soccer.",
+    "choices": [
+      "are",
+      "can",
+      "do",
+      "does"
+    ],
+    "answer": "can",
+    "translation": "私はサッカーをすることができます。"
   }
+
 ]
 
     let current = 0;
@@ -450,15 +480,34 @@ button:hover {
       document.getElementById("question").textContent = q.question;
       document.getElementById("translation").textContent = q.translation;
       document.getElementById("choices").innerHTML = "";
+      document.getElementById("result").textContent = "";
+      document.getElementById("result").style.backgroundColor = "transparent";
+      const result = document.getElementById("result");
+
       const choicesDiv = document.getElementById("choices");
       q.choices.forEach(choice => {
         const btn = document.createElement("button");
         btn.textContent = choice;
+
         btn.onclick = () => {
-          alert(choice === q.answer ? "正解！" : "不正解！");
-          current++;
-          if (current < quizData.length) showQuestion();
-          else quizDiv.innerHTML = "<h2>終了！</h2>";
+          const isCorrect = choice === q.answer;
+          result.textContent = isCorrect ? "正解！" : "不正解！";
+          result.style.backgroundColor = isCorrect ? "#4CAF50" : "#f44336";
+          result.style.color = "white";
+
+          if (isCorrect) {
+            btn.style.backgroundColor = "#4CAF50";
+          } else {
+            btn.style.backgroundColor = "#f44336";
+          }
+
+          if (isCorrect) {
+            setTimeout(() => {
+              current++;
+              if (current < quizData.length) showQuestion();
+              else quizDiv.innerHTML = "<h2>終了！</h2>";
+            }, 2000);
+          }
         };
         choicesDiv.appendChild(btn);
       });
