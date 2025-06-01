@@ -43,11 +43,13 @@ h1, h2 {
 }
 
 button {
-  font-size: 1rem;
+  font-size: 1.6rem;
   padding: 14px;
   border: none;
   border-radius: 8px;
   background-color: #4CAF50;
+  width: 100%;
+  height: 80px;
   color: white;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -76,28 +78,6 @@ button:hover {
   <script>
     const quizData = [
   {
-    "question": "She () not speak Chinese.",
-    "choices": [
-      "do",
-      "does",
-      "doesn't",
-      "don't"
-    ],
-    "answer": "doesn't",
-    "translation": "〜ない文"
-  },
-  {
-    "question": "Is she () to music?",
-    "choices": [
-      "listen",
-      "listens",
-      "listening",
-      "listened"
-    ],
-    "answer": "listening",
-    "translation": "彼女は音楽を聴いていますか？"
-  },
-  {
     "question": "She () at school now.",
     "choices": [
       "is",
@@ -107,17 +87,6 @@ button:hover {
     ],
     "answer": "is",
     "translation": "彼/彼女は学校にいますか？"
-  },
-  {
-    "question": "Are they () English?",
-    "choices": [
-      "study",
-      "studied",
-      "studies",
-      "studying"
-    ],
-    "answer": "studying",
-    "translation": "彼らは英語を勉強していますか？"
   },
   {
     "question": "Do you () soccer?",
@@ -144,12 +113,12 @@ button:hover {
   {
     "question": "I () not watch TV every day.",
     "choices": [
-      "don't",
-      "doesn't",
-      "am",
-      "is"
+      "do",
+      "does",
+      "is",
+      "are"
     ],
-    "answer": "don't",
+    "answer": "do",
     "translation": "私は毎日テレビを見ません。"
   },
   {
@@ -175,28 +144,6 @@ button:hover {
     "translation": "私たちはあなたに会えて嬉しいです。"
   },
   {
-    "question": "He () not eat fish.",
-    "choices": [
-      "don't",
-      "doesn't",
-      "isn't",
-      "aren't"
-    ],
-    "answer": "doesn't",
-    "translation": "彼は魚を食べません。"
-  },
-  {
-    "question": "Ken and I () like soccer.",
-    "choices": [
-      "do",
-      "does",
-      "is",
-      "are"
-    ],
-    "answer": "do",
-    "translation": "私は〜"
-  },
-  {
     "question": "They () students.",
     "choices": [
       "is",
@@ -217,6 +164,61 @@ button:hover {
     ],
     "answer": "am",
     "translation": "私は東京にいます。"
+  },
+  {
+    "question": "() you a teacher?",
+    "choices": [
+      "Are",
+      "Is",
+      "Am",
+      "Be"
+    ],
+    "answer": "Are",
+    "translation": "あなたは先生ですか？"
+  },
+  {
+    "question": "() Mike a teacher?",
+    "choices": [
+      "Is",
+      "Are",
+      "Am",
+      "Be"
+    ],
+    "answer": "Is",
+    "translation": "マイクは先生ですか？"
+  },
+  {
+    "question": "() you play the piano?",
+    "choices": [
+      "Do",
+      "Does",
+      "Is",
+      "Are"
+    ],
+    "answer": "Do",
+    "translation": "あなたはピアノを弾きますか？"
+  },
+  {
+    "question": "He () not eat fish.",
+    "choices": [
+      "do",
+      "does",
+      "is",
+      "are"
+    ],
+    "answer": "does",
+    "translation": "彼は魚を食べません。"
+  },
+  {
+    "question": "Ken and I () like soccer.",
+    "choices": [
+      "don't",
+      "doesn't",
+      "isn't",
+      "aren't"
+    ],
+    "answer": "don't",
+    "translation": "私は〜"
   },
   {
     "question": "Do they () lunch at 12?",
@@ -395,14 +397,47 @@ button:hover {
     "translation": "あなたはネコが好きですか？"
   },
   {
+    "question": "She () not speak Chinese.",
+    "choices": [
+      "do",
+      "does",
+      "is",
+      "are"
+    ],
+    "answer": "does",
+    "translation": "〜ない文"
+  },
+  {
+    "question": "Is she () to music?",
+    "choices": [
+      "listen",
+      "listens",
+      "listening",
+      "listened"
+    ],
+    "answer": "listening",
+    "translation": "彼女は音楽を聴いていますか？"
+  },
+  {
+    "question": "Are they () English?",
+    "choices": [
+      "study",
+      "studied",
+      "studies",
+      "studying"
+    ],
+    "answer": "studying",
+    "translation": "彼らは英語を勉強していますか？"
+  },
+  {
     "question": "She () not have a bike.",
     "choices": [
-      "don't",
-      "doesn't",
-      "isn't",
-      "aren't"
+      "do",
+      "does",
+      "is",
+      "are"
     ],
-    "answer": "doesn't",
+    "answer": "does",
     "translation": "〜ない文"
   }
 ]
